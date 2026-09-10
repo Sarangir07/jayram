@@ -5,14 +5,7 @@ import { ArrowRight } from "lucide-react";
 import Glyph, { type GlyphName } from "@/components/ui/Glyph";
 import type { Service } from "@/data/site";
 
-/**
- * One card in the hero's right-hand rail (desktop) or the stacked mobile list.
- *
- * Geometry follows the artwork: a 282 x 75 glass panel, icon at 30px in, title
- * from 68px, and the photograph filling the right 42% behind a scrim that fades
- * it into the glass. The arrow disc is real UI, so it animates on hover — the
- * supplied thumbnails are cropped short of the baked-in disc for that reason.
- */
+
 export default function ServiceCard({
   service,
   index,

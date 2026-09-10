@@ -58,7 +58,7 @@ export default function Navbar() {
           >
             <ul
               className="flex items-center"
-              style={{ gap: "clamp(1.15rem, 2.24vw, 2.5rem)" }}
+              style={{ gap: "clamp(0.85rem, 1.35vw, 1.85rem)" }}
             >
               {NAV.map((item) => {
                 const isActive =

@@ -3,6 +3,7 @@ import { MapPin } from "lucide-react";
 
 import Logo from "@/components/ui/Logo";
 import { COMPANY, NAV } from "@/data/site";
+import { CONTACT_DETAILS } from "@/data/inner";
 
 export default function Footer() {
   const year = new Date().getFullYear();
@@ -13,7 +14,7 @@ export default function Footer() {
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-25"
         style={{
-          backgroundImage: "url(/assets/jayam/editorial/dubai-evening.jpg)",
+          backgroundImage: "url(/assets/jayam/hd/evening.jpg)",
           backgroundSize: "cover",
           backgroundPosition: "center 35%",
         }}
@@ -41,9 +42,17 @@ export default function Footer() {
             >
               Get in Touch
             </Link>
-            <p className="mt-5 flex items-center gap-2 text-[0.9rem] font-semibold text-white lg:justify-end">
-              <MapPin aria-hidden className="size-4 text-red-bright" />
-              {COMPANY.location}
+            <p className="mt-5 flex flex-col gap-2 text-[0.9rem] font-semibold text-white lg:items-end">
+              <span className="flex items-center gap-2">
+                <MapPin aria-hidden className="size-4 text-red-bright" />
+                {CONTACT_DETAILS.location}
+              </span>
+              <a href={CONTACT_DETAILS.phoneHref} className="hover:text-blue-200">
+                {CONTACT_DETAILS.phone}
+              </a>
+              <a href={CONTACT_DETAILS.emailHref} className="hover:text-blue-200">
+                {CONTACT_DETAILS.email}
+              </a>
             </p>
           </div>
         </div>

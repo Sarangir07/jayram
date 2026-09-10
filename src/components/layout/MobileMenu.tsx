@@ -2,10 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { ArrowRight, MapPin, X } from "lucide-react";
+import { X } from "lucide-react";
 
-import Logo from "@/components/ui/Logo";
 import { COMPANY, NAV } from "@/data/site";
+import { CONTACT_DETAILS } from "@/data/inner";
 
 export default function MobileMenu({
   open,
@@ -21,7 +21,6 @@ export default function MobileMenu({
 
   useEffect(() => {
     if (!open) return;
-
     const { body } = document;
     const previousOverflow = body.style.overflow;
     const previouslyFocused = document.activeElement as HTMLElement | null;
@@ -29,14 +28,9 @@ export default function MobileMenu({
     closeRef.current?.focus();
 
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "Escape") {
-        onClose();
-        return;
-      }
+      if (e.key === "Escape") onClose();
       if (e.key !== "Tab") return;
-      const focusables = panelRef.current?.querySelectorAll<HTMLElement>(
-        "a[href], button:not([disabled])",
-      );
+      const focusables = panelRef.current?.querySelectorAll<HTMLElement>("a[href], button:not([disabled])");
       if (!focusables?.length) return;
       const first = focusables[0];
       const last = focusables[focusables.length - 1];
@@ -48,7 +42,6 @@ export default function MobileMenu({
         first.focus();
       }
     };
-
     document.addEventListener("keydown", onKeyDown);
     return () => {
       document.removeEventListener("keydown", onKeyDown);
@@ -59,52 +52,41 @@ export default function MobileMenu({
 
   return (
     <div className={`fixed inset-0 z-[90] ${open ? "" : "pointer-events-none"}`} aria-hidden={!open}>
-      <button
-        type="button"
-        tabIndex={-1}
-        aria-label="Close menu"
-        onClick={onClose}
-        className={`absolute inset-0 h-full w-full cursor-default bg-navy/55 ${open ? "opacity-100" : "opacity-0"}`}
-      />
-
       <div
         ref={panelRef}
         id="mobile-menu"
         role="dialog"
         aria-modal="true"
         aria-label="Site menu"
-        className={`absolute top-0 right-0 flex h-full w-[min(400px,88vw)] flex-col bg-white shadow-[-30px_0_80px_-30px_rgba(6,23,51,0.55)] ${
-          open ? "translate-x-0" : "translate-x-full"
-        }`}
+        className={`absolute inset-0 flex flex-col bg-[#061733] text-white ${open ? "opacity-100" : "opacity-0"}`}
       >
-        <div className="flex items-center justify-between border-b border-hairline/70 px-6 py-5">
-          <Logo height="44px" />
+        <div className="flex items-center justify-between px-[var(--gutter)] py-6">
+          <p className="text-[0.62rem] font-semibold tracking-[0.28em] text-blue-200 uppercase">{COMPANY.shortName}</p>
           <button
             ref={closeRef}
             type="button"
             onClick={onClose}
             aria-label="Close menu"
-            className="grid size-11 place-items-center rounded-full border border-hairline text-navy"
+            className="grid size-11 place-items-center rounded-full border border-white/25"
           >
-            <X aria-hidden strokeWidth={2} className="size-5" />
+            <X aria-hidden className="size-5" />
           </button>
         </div>
-
-        <nav aria-label="Main" className="flex-1 overflow-y-auto px-6 py-7">
-          <ul className="flex flex-col">
+        <nav aria-label="Main" className="flex-1 overflow-y-auto px-[var(--gutter)] py-6">
+          <ul>
             {NAV.map((item) => {
               const active =
                 item.href === "/"
                   ? activeHref === "/"
                   : activeHref === item.href || activeHref.startsWith(`${item.href}/`);
               return (
-                <li key={item.href} className="border-b border-hairline/60 last:border-0">
+                <li key={item.href} className="border-b border-white/10">
                   <Link
                     href={item.href}
                     onClick={onClose}
                     aria-current={active ? "page" : undefined}
-                    className={`flex items-center justify-between py-4 text-[1.35rem] font-extrabold tracking-[-0.02em] ${
-                      active ? "text-blue" : "text-navy"
+                    className={`block py-4 text-[clamp(1.6rem,6vw,2.4rem)] font-extrabold tracking-[-0.03em] ${
+                      active ? "text-white" : "text-white/55"
                     }`}
                   >
                     {item.label}
@@ -114,20 +96,11 @@ export default function MobileMenu({
             })}
           </ul>
         </nav>
-
-        <div className="space-y-4 border-t border-hairline/70 px-6 py-6">
-          <p className="flex items-center gap-2 text-[0.82rem] font-bold tracking-[0.14em] text-muted uppercase">
-            <MapPin aria-hidden strokeWidth={2.2} className="size-4 text-red" />
-            {COMPANY.location}
-          </p>
-          <Link
-            href="/contact"
-            onClick={onClose}
-            className="flex w-full items-center justify-center gap-2.5 rounded-full bg-[linear-gradient(180deg,#cf1319_0%,#ab0b10_100%)] px-6 py-4 font-bold text-white"
-          >
-            Get a Quote
-            <ArrowRight aria-hidden strokeWidth={2.4} className="size-[1.1em]" />
-          </Link>
+        <div className="px-[var(--gutter)] py-8 text-[0.88rem] text-white/70">
+          <p>{CONTACT_DETAILS.location}</p>
+          <a className="mt-2 block" href={CONTACT_DETAILS.phoneHref}>
+            {CONTACT_DETAILS.phone}
+          </a>
         </div>
       </div>
     </div>

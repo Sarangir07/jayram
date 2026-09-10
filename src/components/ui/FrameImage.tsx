@@ -23,6 +23,7 @@ export default function FrameImage({
         alt={alt}
         fill
         sizes={sizes}
+        quality={85}
         priority={priority}
         className="object-cover"
         style={{ objectPosition }}

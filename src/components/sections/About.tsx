@@ -52,7 +52,7 @@ export default function About() {
               style={{
                 fontSize: "clamp(11rem, 26vw, 20rem)",
                 lineHeight: 0.82,
-                backgroundImage: "url(/assets/jayam/hero/still-landscape.jpg)",
+                backgroundImage: "url(/assets/jayam/hd/landscape.jpg)",
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 WebkitBackgroundClip: "text",
@@ -98,7 +98,7 @@ export default function About() {
       <div className="relative mt-2 min-h-[14rem] overflow-hidden sm:min-h-[18rem]">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url(/assets/jayam/editorial/soft-landscape.jpg)" }}
+          style={{ backgroundImage: "url(/assets/jayam/hd/landscape.jpg)" }}
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08)_0%,rgba(6,23,51,0.45)_100%)]" />
         <p className="absolute right-6 bottom-24 hidden text-right text-[0.62rem] font-bold tracking-[0.28em] text-white/85 uppercase sm:block">

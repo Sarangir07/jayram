@@ -25,7 +25,7 @@ export default function Sustainability() {
         <div className="mt-14 grid gap-4 md:grid-cols-12 md:grid-rows-2">
           <Reveal className="relative min-h-[18rem] overflow-hidden md:col-span-7 md:row-span-2 md:min-h-[36rem]">
             <FrameImage
-              src="/assets/jayam/editorial/green-architecture.jpg"
+              src="/assets/jayam/hd/green.jpg"
               alt="Planted architecture and landscape"
               sizes="(min-width: 768px) 58vw, 100vw"
             />
@@ -36,14 +36,14 @@ export default function Sustainability() {
           </Reveal>
           <Reveal delay={80} className="relative min-h-[14rem] overflow-hidden md:col-span-5">
             <FrameImage
-              src="/assets/jayam/editorial/soft-landscape.jpg"
+              src="/assets/jayam/hd/landscape.jpg"
               alt="Formal landscape planting"
               sizes="(min-width: 768px) 40vw, 100vw"
             />
           </Reveal>
           <Reveal delay={140} className="relative min-h-[14rem] overflow-hidden md:col-span-5">
             <FrameImage
-              src="/assets/jayam/editorial/water-feature.jpg"
+              src="/assets/jayam/hd/water.jpg"
               alt="Water in a landscaped setting"
               sizes="(min-width: 768px) 40vw, 100vw"
             />

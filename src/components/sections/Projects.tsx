@@ -42,6 +42,7 @@ export default function Projects({ all = false }: { all?: boolean }) {
                       src={project.image}
                       alt={`${project.title}, ${project.place}`}
                       fill
+                      quality={85}
                       sizes="(min-width: 1280px) 22vw, (min-width: 640px) 44vw, 100vw"
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />

@@ -5,7 +5,7 @@ export default function ProjectStory() {
   return (
     <section id="approach" className="relative min-h-[85vh] overflow-hidden">
       <FrameImage
-        src="/assets/jayam/editorial/dubai-evening.jpg"
+        src="/assets/jayam/hd/evening.jpg"
         alt="Aerial view of Dubai architecture at the coast"
         sizes="100vw"
       />

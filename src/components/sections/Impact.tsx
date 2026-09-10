@@ -7,7 +7,7 @@ export default function Impact() {
     <section id="impact" className="relative overflow-hidden">
       <div className="absolute inset-0">
         <FrameImage
-          src="/assets/jayam/editorial/dubai-architecture.jpg"
+          src="/assets/jayam/hd/dubai.jpg"
           alt="Dubai skyline at dusk"
           sizes="100vw"
         />

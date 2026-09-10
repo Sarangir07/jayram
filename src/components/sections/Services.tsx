@@ -44,9 +44,10 @@ export default function Services() {
                 <article className="group h-full overflow-hidden rounded-[1.65rem] bg-[#123044] p-3.5 shadow-[0_18px_40px_-24px_rgba(6,23,51,0.55)] transition-transform duration-500 ease-[var(--ease-out-quint)] hover:-translate-y-1">
                   <div className="relative aspect-[16/10] overflow-hidden rounded-[1.15rem]">
                     <Image
-                      src={service.image}
+                      src={service.photo}
                       alt={service.title}
                       fill
+                      quality={85}
                       sizes="(min-width: 1280px) 22vw, (min-width: 640px) 44vw, 100vw"
                       className="object-cover transition-transform duration-700 ease-[var(--ease-out-quint)] group-hover:scale-105"
                     />

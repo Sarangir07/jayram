@@ -21,7 +21,7 @@ export default function ClientExperience() {
 
           <div className="relative min-h-[20rem] overflow-hidden lg:min-h-[28rem]">
             <FrameImage
-              src="/assets/jayam/editorial/interior.jpg"
+              src="/assets/jayam/hd/interior.jpg"
               alt="Refined interior volume"
               sizes="(min-width: 1024px) 48vw, 100vw"
             />
