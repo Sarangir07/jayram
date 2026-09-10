@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Contact" };
 
 export default function ContactPage() {
   return (
-    <main id="main" className="pt-[4.75rem]">
+    <main id="main" className="pt-[calc(var(--nav-pad)+4.5rem)] lg:pt-[calc(var(--nav-pad)+6.2rem)]">
       <Contact />
     </main>
   );
