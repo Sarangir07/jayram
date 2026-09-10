@@ -1,0 +1,432 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   JAYAM Technical Services LLC — design system
+   Colours are sampled from the supplied reference artwork.
+   ========================================================================== */
+
+@theme {
+  /* brand ---------------------------------------------------------------- */
+  --color-navy: #061733;
+  --color-navy-700: #0a2547;
+  --color-navy-500: #14396a;
+  --color-blue: #1d6fa5;
+  --color-blue-400: #3e93c8;
+  --color-blue-200: #7fb6dc;
+  --color-blue-50: #e8f2f9;
+  --color-teal: #00695c;
+  --color-teal-400: #1a8f7f;
+  --color-green: #2f7d4f;
+  --color-red: #b00d12;
+  --color-red-bright: #d3161c;
+
+  /* text ----------------------------------------------------------------- */
+  --color-ink: #17304c;
+  --color-muted: #5b7189;
+  --color-hairline: #d3e0ec;
+
+  /* type ----------------------------------------------------------------- */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, sans-serif;
+
+  /* breakpoints ---------------------------------------------------------- */
+  /* the width at which the reference desktop stage takes over */
+  --breakpoint-desk: 1200px;
+
+  /* motion --------------------------------------------------------------- */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  /* Semantic aliases, per the brief's design-system requirement. */
+  --navy: var(--color-navy);
+  --deep-blue: var(--color-navy-700);
+  --blue: var(--color-blue);
+  --teal: var(--color-teal);
+  --green: var(--color-green);
+  --red: var(--color-red);
+  --white: #ffffff;
+  --off-white: #f4f8fb;
+  --text: var(--color-ink);
+  --muted: var(--color-muted);
+
+  --radius-card: 18px;
+  --radius-pill: 999px;
+  --shadow-card: 0 18px 46px -22px rgba(6, 23, 51, 0.42);
+  --shadow-lift: 0 26px 60px -24px rgba(6, 23, 51, 0.5);
+  --transition: 420ms var(--ease-out-quint);
+
+  /* Horizontal page gutter, matched to the reference (54 / 1536). */
+  --gutter: clamp(20px, 3.52vw, 62px);
+
+  /*
+   * The hero is reconstructed at the reference's own proportions. `--s` is one
+   * reference pixel expressed in CSS pixels, so every hero measurement can be
+   * written as `calc(N * var(--s))` and the whole composition scales as one
+   * piece — exactly matching the artwork at a 1536px viewport, and holding its
+   * internal proportions at every other desktop width.
+   */
+  --s: clamp(0.68px, calc(100vw / 1536), 1.16px);
+
+  /* puts the logo's top edge on the reference's y = 33 */
+  --nav-pad: clamp(0.7rem, 2.1vh, 1.1rem);
+}
+
+@media (min-width: 1200px) {
+  :root {
+    --nav-pad: calc(33 * var(--s));
+  }
+}
+
+* {
+  min-width: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+body {
+  background: #ffffff;
+  color: var(--text);
+  font-family: var(--font-sans);
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-blue);
+  color: #fff;
+}
+
+/* Focus: visible, on-brand, and never on mouse clicks. */
+:focus-visible {
+  outline: 2px solid var(--color-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+@layer components {
+  /* ==========================================================================
+     Typography primitives
+     ========================================================================== */
+
+  .u-eyebrow {
+    font-size: clamp(10px, 0.72vw, 12px);
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--color-navy-700);
+  }
+
+  .u-display {
+    font-weight: 800;
+    letter-spacing: -0.035em;
+    line-height: 0.98;
+    color: var(--color-navy);
+    text-wrap: balance;
+  }
+
+  /* The third headline line carries the navy → blue gradient from the artwork. */
+  .u-display-gradient {
+    background: linear-gradient(
+      155deg,
+      #061733 8%,
+      #0f3f6d 38%,
+      #1d6fa5 68%,
+      #4b9bcd 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .u-section-title {
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.03;
+    color: var(--color-navy);
+    font-size: clamp(30px, 3.6vw, 56px);
+    text-wrap: balance;
+  }
+
+  .u-lede {
+    color: #34495f;
+    line-height: 1.62;
+    text-wrap: pretty;
+  }
+
+  /* A short rule used above section labels throughout the site. */
+  .u-rule {
+    display: block;
+    width: 46px;
+    height: 3px;
+    background: var(--color-red);
+    border-radius: 2px;
+  }
+
+  /* ==========================================================================
+     Layout
+     ========================================================================== */
+
+  /*
+   * One measure for the whole site. On desktop it locks to the hero's reference
+   * stage so section content aligns with the headline and the logo; below that it
+   * relaxes into an ordinary centred container.
+   */
+  .u-container {
+    width: 100%;
+    max-width: 1180px;
+    margin-inline: auto;
+    padding-inline: var(--gutter);
+  }
+
+  @media (min-width: 1200px) {
+    .u-container {
+      max-width: calc(1536 * var(--s));
+      padding-inline: calc(54 * var(--s));
+    }
+  }
+
+  .u-section {
+    padding-block: clamp(4.25rem, 7.6vw, 8.5rem);
+  }
+
+  /* ==========================================================================
+     Surfaces
+     ========================================================================== */
+
+  /* The glass treatment used by the hero service cards and stat card. */
+  .u-glass {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.17) 0%,
+      rgba(255, 255, 255, 0.07) 46%,
+      rgba(255, 255, 255, 0.03) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.26);
+    backdrop-filter: blur(9px) saturate(120%);
+    -webkit-backdrop-filter: blur(9px) saturate(120%);
+  }
+
+  /* Atmosphere behind the hero: white at the left, deep navy in the top-right,
+     reproducing the reference's diagonal falloff. */
+  .u-hero-sky {
+    /*
+     * Stops are sampled straight off the reference's top band (y = 8), which is
+     * the widest uninterrupted run of background in the artwork: white behind the
+     * headline column, falling to deep navy at the right shoulder. The radial
+     * layer reproduces the way the artwork lifts again toward the lower right,
+     * so the glass cards have something to sit against.
+     */
+    background:
+      radial-gradient(
+        68% 52% at 100% 72%,
+        rgba(138, 186, 214, 0.34) 0%,
+        rgba(138, 186, 214, 0.14) 46%,
+        rgba(138, 186, 214, 0) 100%
+      ),
+      linear-gradient(
+        90deg,
+        #ffffff 4%,
+        #fdfefe 14%,
+        #f3f9fe 22%,
+        #e4f0fb 31%,
+        #c9e3f6 40%,
+        #abd0ee 49%,
+        #8abde4 59%,
+        #69a8d5 68%,
+        #498ec1 77%,
+        #3278ac 86%,
+        #1b5683 95%,
+        #124770 100%
+      );
+  }
+
+  /* Deep field used by the dark sections so they sit in the same world. */
+  .u-deep {
+    background:
+      radial-gradient(90% 120% at 88% 0%, #124a76 0%, rgba(18, 74, 118, 0) 62%),
+      radial-gradient(70% 90% at 0% 100%, #0b2f4d 0%, rgba(11, 47, 77, 0) 60%),
+      linear-gradient(168deg, #051529 0%, #061c39 55%, #04101f 100%);
+  }
+
+  .u-off {
+    background: var(--off-white);
+  }
+
+  /* Fine engineering grid, used sparingly on dark technical panels. */
+  .u-eng-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+    background-size: 72px 72px;
+  }
+
+  .u-eng-grid-light {
+    background-image:
+      linear-gradient(rgba(6, 23, 51, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(6, 23, 51, 0.05) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .u-coord {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .u-img-grade {
+    position: relative;
+  }
+  .u-img-grade::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(6, 23, 51, 0.08) 0%,
+      rgba(6, 23, 51, 0.18) 100%
+    );
+    mix-blend-mode: multiply;
+  }
+}
+
+@keyframes j-drift {
+  from {
+    transform: scale(1.06) translate3d(0, 0, 0);
+  }
+  to {
+    transform: scale(1.14) translate3d(-1.6%, 1.2%, 0);
+  }
+}
+
+.a-drift {
+  animation: j-drift 28s ease-in-out alternate infinite;
+}
+
+/* ==========================================================================
+   Entrance motion
+   ========================================================================== */
+
+@keyframes j-rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes j-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes j-slide-left {
+  from {
+    opacity: 0;
+    transform: translate3d(34px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes j-plate {
+  from {
+    opacity: 0;
+    transform: scale(1.045);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes j-scroll-dot {
+  0% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  22% {
+    opacity: 1;
+  }
+  72% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(9px);
+    opacity: 0;
+  }
+}
+
+.a-rise {
+  animation: j-rise 900ms var(--ease-out-quint) both;
+}
+.a-fade {
+  animation: j-fade 1000ms var(--ease-out-quint) both;
+}
+.a-slide-left {
+  animation: j-slide-left 900ms var(--ease-out-quint) both;
+}
+.a-plate {
+  animation: j-plate 1500ms var(--ease-out-expo) both;
+}
+
+/* Scroll-triggered reveal, driven by <Reveal>. */
+.r-hide {
+  opacity: 0;
+  transform: translate3d(0, 30px, 0);
+}
+.r-show {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 850ms var(--ease-out-quint),
+    transform 850ms var(--ease-out-quint);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 1ms !important;
+    scroll-behavior: auto !important;
+  }
+  .r-hide {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Hide scrollbars on the horizontal project rail without losing keyboard scroll. */
+.u-rail {
+  scrollbar-width: none;
+}
+.u-rail::-webkit-scrollbar {
+  display: none;
+}
