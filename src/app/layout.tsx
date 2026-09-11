@@ -5,6 +5,7 @@ import { COMPANY } from "@/data/site";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ContactDock from "@/components/layout/ContactDock";
+import ScrollButtons from "@/components/layout/ScrollButtons";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -50,6 +51,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <ContactDock />
+        <ScrollButtons />
       </body>
     </html>
   );
