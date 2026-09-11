@@ -14,14 +14,14 @@ const actions = [
   {
     href: CONTACT_DETAILS.whatsappHref,
     label: "WhatsApp",
-    className: "bg-[#25D366] hover:bg-[#1ebe57]",
+    className: "bg-teal hover:bg-teal-400",
     icon: <WhatsAppIcon className="size-5" />,
     external: true,
   },
   {
     href: CONTACT_DETAILS.phoneHref,
     label: "Call",
-    className: "bg-blue hover:bg-blue-400",
+    className: "bg-navy hover:bg-navy-500",
     icon: <Phone className="size-[1.15rem]" strokeWidth={2.2} />,
     external: false,
   },
@@ -36,7 +36,7 @@ const actions = [
 
 export default function ContactDock() {
   return (
-    <div className="pointer-events-none fixed top-1/2 right-3 z-[70] -translate-y-1/2 sm:right-4">
+    <div className="pointer-events-none fixed right-3 bottom-[max(1.25rem,env(safe-area-inset-bottom))] z-[70] lg:top-1/2 lg:right-4 lg:bottom-auto lg:-translate-y-1/2">
       <nav aria-label="Quick contact" className="pointer-events-auto flex flex-col gap-2.5">
         {actions.map((action) => (
           <a
@@ -45,7 +45,7 @@ export default function ContactDock() {
             target={action.external ? "_blank" : undefined}
             rel={action.external ? "noreferrer" : undefined}
             aria-label={action.label}
-            className={`group relative flex size-12 items-center justify-center rounded-full text-white shadow-[0_12px_28px_-12px_rgba(6,23,51,0.55)] transition-[transform,background-color] duration-300 hover:-translate-x-0.5 ${action.className}`}
+            className={`group relative flex size-11 items-center justify-center rounded-full text-white shadow-[0_12px_28px_-12px_rgba(6,23,51,0.55)] transition-[transform,background-color] duration-300 hover:-translate-x-0.5 sm:size-12 ${action.className}`}
           >
             {action.icon}
             <span className="pointer-events-none absolute right-[3.35rem] hidden rounded-full bg-navy px-3 py-1.5 text-[0.72rem] font-bold tracking-[0.12em] text-white uppercase opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 lg:block">
