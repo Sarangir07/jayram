@@ -4,6 +4,7 @@ import { inter, script } from "@/lib/fonts";
 import { COMPANY } from "@/data/site";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import ContactDock from "@/components/layout/ContactDock";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +15,10 @@ export const metadata: Metadata = {
   description:
     "Complete MEP, Landscaping and Facility Solutions delivered with quality, reliability and a commitment to a better tomorrow.",
   applicationName: COMPANY.name,
-  icons: { icon: "/assets/jayam/logo/jayam-mark-square.png" },
+  icons: {
+    icon: "/assets/jayam/logo/jayam-mark.png",
+    apple: "/assets/jayam/logo/jayam-mark.png",
+  },
   openGraph: {
     title: `${COMPANY.name} — Integrated Facility Solutions`,
     description:
@@ -33,10 +37,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${script.variable}`}>
-      <body className="antialiased">
+    <html lang="en" className={`${inter.variable} ${script.variable}`} suppressHydrationWarning>
+      <body className="antialiased" suppressHydrationWarning>
         <a
           href="#main"
+          suppressHydrationWarning
           className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:top-4 focus-visible:left-4 focus-visible:z-100 focus-visible:rounded-full focus-visible:bg-navy focus-visible:px-5 focus-visible:py-3 focus-visible:font-bold focus-visible:text-white"
         >
           Skip to content
@@ -44,6 +49,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <ContactDock />
       </body>
     </html>
   );

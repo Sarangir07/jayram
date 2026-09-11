@@ -65,6 +65,7 @@ export default function MobileMenu({
           <button
             ref={closeRef}
             type="button"
+            suppressHydrationWarning
             onClick={onClose}
             aria-label="Close menu"
             className="grid size-11 place-items-center rounded-full border border-white/25"
@@ -100,6 +101,9 @@ export default function MobileMenu({
           <p>{CONTACT_DETAILS.location}</p>
           <a className="mt-2 block" href={CONTACT_DETAILS.phoneHref}>
             {CONTACT_DETAILS.phone}
+          </a>
+          <a className="mt-2 block" href={CONTACT_DETAILS.emailHref}>
+            {CONTACT_DETAILS.email}
           </a>
         </div>
       </div>

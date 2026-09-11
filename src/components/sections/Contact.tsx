@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
 import { COMPANY, PROJECT_TYPES } from "@/data/site";
+import { CONTACT_DETAILS } from "@/data/inner";
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
@@ -17,9 +18,7 @@ export default function Contact() {
     );
     const subject = encodeURIComponent(`Enquiry — ${data.get("Name") || "JAYAM"}`);
     const body = encodeURIComponent(lines.join("\n"));
-    if (COMPANY.email) {
-      window.location.href = `mailto:${COMPANY.email}?subject=${subject}&body=${body}`;
-    }
+    window.location.href = `${CONTACT_DETAILS.emailHref}?subject=${subject}&body=${body}`;
     setSent(true);
   };
 
@@ -41,18 +40,22 @@ export default function Contact() {
                 <dt className="text-[0.62rem] font-semibold tracking-[0.22em] text-muted uppercase">Location</dt>
                 <dd className="mt-1 text-[1.05rem] font-bold text-navy">{COMPANY.location}</dd>
               </div>
-              {COMPANY.phone && (
-                <div>
-                  <dt className="text-[0.62rem] font-semibold tracking-[0.22em] text-muted uppercase">Telephone</dt>
-                  <dd className="mt-1 text-[1.05rem] font-bold text-navy">{COMPANY.phone}</dd>
-                </div>
-              )}
-              {COMPANY.email && (
-                <div>
-                  <dt className="text-[0.62rem] font-semibold tracking-[0.22em] text-muted uppercase">Email</dt>
-                  <dd className="mt-1 text-[1.05rem] font-bold text-navy">{COMPANY.email}</dd>
-                </div>
-              )}
+              <div>
+                <dt className="text-[0.62rem] font-semibold tracking-[0.22em] text-muted uppercase">Telephone</dt>
+                <dd className="mt-1 text-[1.05rem] font-bold text-navy">
+                  <a className="hover:text-blue" href={CONTACT_DETAILS.phoneHref}>
+                    {CONTACT_DETAILS.phone}
+                  </a>
+                </dd>
+              </div>
+              <div>
+                <dt className="text-[0.62rem] font-semibold tracking-[0.22em] text-muted uppercase">Email</dt>
+                <dd className="mt-1 text-[1.05rem] font-bold text-navy">
+                  <a className="hover:text-blue" href={CONTACT_DETAILS.emailHref}>
+                    {CONTACT_DETAILS.email}
+                  </a>
+                </dd>
+              </div>
             </dl>
           </div>
 
@@ -83,6 +86,7 @@ export default function Contact() {
                       name={field.name}
                       type={field.type}
                       autoComplete={field.auto}
+                      suppressHydrationWarning
                       className="mt-2 w-full rounded-xl border border-navy/10 bg-[#f7fafc] px-3 py-3 text-[0.95rem] text-navy outline-none transition-colors focus:border-blue"
                     />
                   </label>
@@ -94,6 +98,7 @@ export default function Contact() {
                 </span>
                 <select
                   name="Project Type"
+                  suppressHydrationWarning
                   className="mt-2 w-full rounded-xl border border-navy/10 bg-[#f7fafc] px-3 py-3 text-[0.95rem] text-navy outline-none focus:border-blue"
                   defaultValue=""
                 >
@@ -115,11 +120,13 @@ export default function Contact() {
                   name="Message"
                   required
                   rows={4}
+                  suppressHydrationWarning
                   className="mt-2 w-full resize-y rounded-xl border border-navy/10 bg-[#f7fafc] px-3 py-3 text-[0.95rem] text-navy outline-none focus:border-blue"
                 />
               </label>
               <button
                 type="submit"
+                suppressHydrationWarning
                 className="group mt-1 inline-flex h-[3.2rem] items-center justify-center gap-2 rounded-full bg-[linear-gradient(180deg,#cf1319_0%,#ab0b10_100%)] px-8 text-[0.88rem] font-bold text-white shadow-[0_14px_30px_-14px_rgba(176,13,18,0.8)] transition-transform hover:-translate-y-0.5"
               >
                 Get in Touch

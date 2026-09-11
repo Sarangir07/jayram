@@ -110,6 +110,7 @@ export default function ContactStudio() {
                     type={f.type}
                     autoComplete={f.auto}
                     required={f.required}
+                    suppressHydrationWarning
                     className="mt-2 w-full border-0 border-b border-navy/20 bg-transparent py-3 text-[1rem] text-navy outline-none focus:border-blue"
                   />
                 </label>
@@ -122,6 +123,7 @@ export default function ContactStudio() {
               <select
                 name="Service Required"
                 defaultValue=""
+                suppressHydrationWarning
                 className="mt-2 w-full border-0 border-b border-navy/20 bg-transparent py-3 text-[1rem] text-navy outline-none focus:border-blue"
               >
                 <option value="" disabled>
@@ -148,6 +150,7 @@ export default function ContactStudio() {
             {error && <p className="text-[0.88rem] text-red">{error}</p>}
             <button
               type="submit"
+              suppressHydrationWarning
               className="group mt-2 inline-flex h-[3.4rem] items-center justify-center gap-3 rounded-full bg-[linear-gradient(180deg,#cf1319_0%,#ab0b10_100%)] px-8 text-[0.88rem] font-bold text-white"
             >
               Request a Free Quote

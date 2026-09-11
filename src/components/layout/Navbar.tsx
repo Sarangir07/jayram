@@ -95,6 +95,7 @@ export default function Navbar() {
           >
             <button
               type="button"
+              suppressHydrationWarning
               className="hidden items-center gap-2 font-bold tracking-[0.1em] text-navy uppercase transition-colors duration-300 hover:text-blue desk:flex"
               style={{ fontSize: "clamp(0.8rem, 1.02vw, 1.04rem)" }}
             >
@@ -122,6 +123,7 @@ export default function Navbar() {
 
             <button
               type="button"
+              suppressHydrationWarning
               onClick={() => setMenuOpen(true)}
               aria-label="Open menu"
               aria-expanded={menuOpen}

@@ -31,8 +31,8 @@ export const COMPANY = {
     vertical: ["People", "Spaces", "A Better", "Tomorrow"],
     lower: ["Engineering Comfort", "Enhancing Lives"],
   },
-  phone: null as string | null,
-  email: null as string | null,
+  phone: "+971 54 358 2569",
+  email: "info@jayam.me",
   address: null as string | null,
   social: [] as { label: string; href: string }[],
 } as const;

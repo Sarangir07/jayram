@@ -10,8 +10,9 @@ export const CONTACT_DETAILS = {
   manager: "Mohan Kumar Subbaraj",
   phone: "+971 54 358 2569",
   phoneHref: "tel:+971543582569",
-  email: "jayamts2022@gmail.com",
-  emailHref: "mailto:jayamts2022@gmail.com",
+  email: "info@jayam.me",
+  emailHref: "mailto:info@jayam.me",
+  whatsappHref: "https://wa.me/971543582569",
   location: "Dubai, United Arab Emirates",
 } as const;
 
