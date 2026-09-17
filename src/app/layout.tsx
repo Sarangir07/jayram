@@ -5,7 +5,7 @@ import { COMPANY } from "@/data/site";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import ContactDock from "@/components/layout/ContactDock";
-import ScrollButtons from "@/components/layout/ScrollButtons";
+import Opener from "@/components/opener/Opener";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     "Complete MEP, Landscaping and Facility Solutions delivered with quality, reliability and a commitment to a better tomorrow.",
   applicationName: COMPANY.name,
   icons: {
-    icon: "/assets/jayam/logo/jayam-mark.png",
-    apple: "/assets/jayam/logo/jayam-mark.png",
+    icon: "/assets/jayam/logo/jayam-mark-square.png",
+    apple: "/assets/jayam/logo/jayam-mark-square.png",
   },
   openGraph: {
     title: `${COMPANY.name} — Integrated Facility Solutions`,
@@ -40,6 +40,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${script.variable}`} suppressHydrationWarning>
       <body className="antialiased" suppressHydrationWarning>
+        <Opener />
         <a
           href="#main"
           suppressHydrationWarning
@@ -51,7 +52,6 @@ export default function RootLayout({
         {children}
         <Footer />
         <ContactDock />
-        <ScrollButtons />
       </body>
     </html>
   );

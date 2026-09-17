@@ -423,10 +423,281 @@ body {
   }
 }
 
+/* ==========================================================================
+   Projects page
+   ========================================================================== */
+
+@keyframes j-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.a-marquee {
+  animation: j-marquee 48s linear infinite;
+}
+.a-marquee-pause:hover .a-marquee,
+.a-marquee-pause:focus-within .a-marquee {
+  animation-play-state: paused;
+}
+
+.a-scroll-dot {
+  animation: j-scroll-dot 1.9s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a-marquee {
+    animation: none;
+  }
+}
+
 /* Hide scrollbars on the horizontal project rail without losing keyboard scroll. */
 .u-rail {
   scrollbar-width: none;
 }
 .u-rail::-webkit-scrollbar {
   display: none;
+}
+
+/* ==========================================================================
+   Site opener — see components/opener/Opener.tsx for the timeline.
+   ========================================================================== */
+
+/* Hold the hero's entrance animations until the stage starts to wipe away. */
+html[data-opener="playing"] :is(.a-rise, .a-fade, .a-slide-left, .a-plate) {
+  animation-play-state: paused;
+}
+html:not([data-opener]) .op-stage {
+  display: none;
+}
+
+.op-stage {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  overflow: hidden;
+  color: #fff;
+  background:
+    radial-gradient(60% 50% at 50% 42%, rgba(29, 111, 165, 0.32), transparent 70%),
+    linear-gradient(180deg, #071a3a 0%, #061733 60%, #04101f 100%);
+  cursor: pointer;
+  animation: op-fadein 500ms var(--ease-out-quint) both;
+}
+.op-stage.op-leave {
+  pointer-events: none;
+  animation: op-wipe 1100ms var(--ease-out-expo) 40ms both;
+}
+.op-leave .op-body,
+.op-leave .op-foot {
+  animation: op-out 500ms var(--ease-out-quint) both;
+}
+
+.op-grid {
+  position: absolute;
+  inset: -1px;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(70% 70% at 50% 45%, #000 30%, transparent 100%);
+  animation: op-grid 4000ms linear both;
+}
+.op-glow {
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  width: 46rem;
+  height: 46rem;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(62, 147, 200, 0.28), transparent 62%);
+  filter: blur(24px);
+  animation: op-glow 2400ms var(--ease-out-quint) 500ms both;
+}
+
+.op-body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.6rem, 4vh, 2.8rem);
+  padding: 0 1.25rem;
+  text-align: center;
+}
+@media (min-width: 900px) {
+  .op-body {
+    flex-direction: row;
+    gap: clamp(2.5rem, 5vw, 4.5rem);
+    text-align: left;
+  }
+}
+
+/* -- the mark ----------------------------------------------------------- */
+.op-mark {
+  position: relative;
+  width: clamp(7.5rem, 22vw, 13.5rem);
+  aspect-ratio: 1053 / 1343;
+  filter: drop-shadow(0 30px 60px rgba(0, 0, 0, 0.45));
+}
+.op-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.op-frame rect {
+  fill: none;
+  stroke: #d3161c;
+  stroke-width: 44;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: op-draw 1100ms var(--ease-out-quint) 150ms both;
+}
+.op-j {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  clip-path: inset(100% 0 0 0);
+  animation: op-flood 1000ms var(--ease-out-quint) 650ms both;
+}
+
+/* -- the words ---------------------------------------------------------- */
+.op-word {
+  display: flex;
+  justify-content: center;
+  font-size: clamp(3.4rem, 10vw, 6.6rem);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  background: linear-gradient(90deg, #4cc3ef 0%, #1d6fa5 55%, #0d5a94 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@media (min-width: 900px) {
+  .op-word {
+    justify-content: flex-start;
+  }
+}
+.op-word span {
+  display: inline-block;
+  opacity: 0;
+  animation: op-rise 800ms var(--ease-out-quint) both;
+}
+.op-sub {
+  margin-top: 0.7rem;
+  font-size: clamp(0.72rem, 1.6vw, 0.98rem);
+  font-weight: 800;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: #ff6167;
+  opacity: 0;
+  animation: op-track 900ms var(--ease-out-quint) 1550ms both;
+}
+.op-lines {
+  position: relative;
+  height: 1.6em;
+  margin-top: clamp(1rem, 2.4vh, 1.6rem);
+  font-size: clamp(0.74rem, 1.7vw, 1.02rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.78);
+}
+.op-line {
+  position: absolute;
+  inset: 0;
+  display: block;
+  white-space: nowrap;
+  opacity: 0;
+  animation: op-line 750ms var(--ease-out-quint) both;
+}
+.op-line:last-child {
+  animation-name: op-line-hold;
+}
+
+/* -- the foot ----------------------------------------------------------- */
+.op-foot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 0 clamp(1.25rem, 4vw, 3rem) max(1.5rem, env(safe-area-inset-bottom));
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  animation: op-fadein 800ms var(--ease-out-quint) 700ms both;
+}
+.op-bar {
+  flex: 1;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+.op-bar-fill {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left;
+  transform: scaleX(0);
+  background: linear-gradient(90deg, #1a8f7f, #3e93c8, #d3161c);
+  animation: op-fill linear both;
+}
+
+/* -- keyframes ---------------------------------------------------------- */
+@keyframes op-fadein {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes op-out {
+  to { opacity: 0; transform: translateY(-18px); }
+}
+@keyframes op-wipe {
+  to { clip-path: inset(0 0 100% 0); }
+}
+@keyframes op-grid {
+  from { transform: translateY(24px) scale(1.04); opacity: 0; }
+  to { transform: translateY(-24px) scale(1); opacity: 1; }
+}
+@keyframes op-glow {
+  from { opacity: 0; scale: 0.6; }
+  to { opacity: 1; scale: 1; }
+}
+@keyframes op-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes op-flood {
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes op-rise {
+  from { opacity: 0; transform: translateY(0.55em) skewY(4deg); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes op-track {
+  from { opacity: 0; letter-spacing: 0.9em; }
+  to { opacity: 1; letter-spacing: 0.42em; }
+}
+@keyframes op-line {
+  0% { opacity: 0; transform: translateY(10px); }
+  28% { opacity: 1; transform: none; }
+  72% { opacity: 1; transform: none; }
+  100% { opacity: 0; transform: translateY(-10px); }
+}
+@keyframes op-line-hold {
+  0% { opacity: 0; transform: translateY(10px); }
+  30% { opacity: 1; transform: none; }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes op-fill {
+  to { transform: scaleX(1); }
 }

@@ -140,8 +140,40 @@ export type Capability = {
 
 export const CAPABILITIES: Capability[] = [
   {
+    slug: "electrical-works",
+    title: "Electrical Works",
+    kicker: "Electrical Design, Approvals and Installation",
+    body: "Electrical work on a UAE property starts well before the first cable is pulled. JAYAM handles the design and consultation, prepares and submits the drawings to the relevant authority, follows the approval through, and arranges the inspection — with DEWA, TAQA and SEWA. From there we carry out the installation, testing and ongoing maintenance for residential, commercial and retail properties.",
+    points: [
+      "Electrical design and consultation",
+      "Authority submission and approval (DEWA, TAQA, SEWA)",
+      "Authority inspection coordination",
+      "Electrical installation",
+      "Testing and commissioning",
+      "Electrical maintenance and repair",
+    ],
+    image: HD.engineer,
+  },
+  {
+    slug: "plumbing-sanitary",
+    title: "Plumbing",
+    kicker: "Professional Plumbing Services for Residential & Commercial Properties",
+    body: "Plumbing systems are essential to the daily operation of every building. A properly planned, installed and maintained plumbing system helps ensure reliable water supply, drainage and sanitary facilities. JAYAM provides plumbing and sanitary services for villas, offices, retail spaces and commercial properties. Our experience includes plumbing work for residential developments, villas and commercial projects across the UAE.",
+    points: [
+      "Water supply works",
+      "Drainage works",
+      "Sanitary installation",
+      "Plumbing installation",
+      "Plumbing maintenance",
+      "Plumbing repair",
+      "Project-specific plumbing works",
+      "Design, consultation and authority submission (DEWA, TAQA, SEWA)",
+    ],
+    image: HD.plumbing,
+  },
+  {
     slug: "electro-mechanical",
-    title: "Electro-Mechanical Services",
+    title: "Electromechanical",
     kicker: "Reliable Electro-Mechanical Solutions for Properties",
     body: "Electro-mechanical systems play an important role in the operation and functionality of modern buildings. Proper installation, maintenance and technical support help ensure that building systems continue to operate effectively. JAYAM provides electro-mechanical services for different types of residential and commercial properties. Whether the requirement is related to a new project, renovation, fit-out or ongoing maintenance, we aim to provide a suitable technical solution based on the property's requirements.",
     points: [
@@ -156,7 +188,7 @@ export const CAPABILITIES: Capability[] = [
   },
   {
     slug: "air-conditioning",
-    title: "Air Conditioning & Ventilation",
+    title: "Air Conditioning",
     kicker: "Air Conditioning & Ventilation Services in Dubai",
     body: "A comfortable indoor environment depends on properly functioning air conditioning and ventilation systems. JAYAM provides air conditioning and ventilation services for residential and commercial properties, helping clients maintain comfortable and functional indoor environments.",
     points: [
@@ -171,24 +203,8 @@ export const CAPABILITIES: Capability[] = [
     image: HD.hvac,
   },
   {
-    slug: "plumbing-sanitary",
-    title: "Plumbing & Sanitary",
-    kicker: "Professional Plumbing Services for Residential & Commercial Properties",
-    body: "Plumbing systems are essential to the daily operation of every building. A properly planned, installed and maintained plumbing system helps ensure reliable water supply, drainage and sanitary facilities. JAYAM provides plumbing and sanitary services for villas, offices, retail spaces and commercial properties. Our experience includes plumbing work for residential developments, villas and commercial projects across the UAE.",
-    points: [
-      "Water supply works",
-      "Drainage works",
-      "Sanitary installation",
-      "Plumbing installation",
-      "Plumbing maintenance",
-      "Plumbing repair",
-      "Project-specific plumbing works",
-    ],
-    image: HD.plumbing,
-  },
-  {
     slug: "gypsum-ceiling",
-    title: "Gypsum, False Ceiling & Partition",
+    title: "Gypsum",
     kicker: "Interior Finishing Solutions for Modern Spaces",
     body: "Well-designed interiors require functional and professional finishing work. JAYAM provides gypsum, false ceiling and partition services for residential and commercial spaces. These solutions can help improve the appearance, organization and functionality of interior areas. Our team works according to the project's design, functional requirements and site conditions.",
     points: [
@@ -203,7 +219,7 @@ export const CAPABILITIES: Capability[] = [
   },
   {
     slug: "aluminium-glass",
-    title: "Aluminium & Glass",
+    title: "Aluminium",
     kicker: "Aluminium & Glass Installation and Maintenance",
     body: "Aluminium and glass are widely used in modern residential and commercial properties because of their practical and aesthetic benefits. JAYAM provides aluminium and glass installation and maintenance services based on the requirements of the project. We focus on delivering clean, functional and professionally executed work suitable for the property's requirements.",
     points: [
@@ -215,6 +231,36 @@ export const CAPABILITIES: Capability[] = [
       "Project-specific installation work",
     ],
     image: HD.glass,
+  },
+  {
+    slug: "lift-installation",
+    title: "Lift Installation",
+    kicker: "Lift Installation and Servicing",
+    body: "Vertical transportation has to be safe, compliant and available every day it is in use. JAYAM provides lift installation and servicing for residential and commercial buildings, working to the building's requirements and the applicable safety standards.",
+    points: [
+      "Lift installation",
+      "Escalator works",
+      "Preventive servicing",
+      "Technical inspection",
+      "Repair and maintenance support",
+      "Project-specific installation works",
+    ],
+    image: HD.escalator,
+  },
+  {
+    slug: "pergola",
+    title: "Pergola",
+    kicker: "Outdoor Pergola & Shade Solutions",
+    body: "Outdoor spaces can become more comfortable and useful with properly designed shade structures. JAYAM provides pergola and shade structure services for residential and commercial outdoor areas. We consider the property's requirements and outdoor environment when planning the work.",
+    points: [
+      "Villas",
+      "Gardens",
+      "Outdoor seating areas",
+      "Commercial properties",
+      "Recreational spaces",
+      "Landscape areas",
+    ],
+    image: HD.pergola,
   },
   {
     slug: "soft-landscaping",
@@ -247,7 +293,7 @@ export const CAPABILITIES: Capability[] = [
   },
   {
     slug: "swimming-pools",
-    title: "Swimming Pool Maintenance",
+    title: "Swimming Pool",
     kicker: "Swimming Pool Maintenance Services in Dubai",
     body: "A swimming pool requires regular care and maintenance to remain clean, functional and suitable for use. JAYAM provides swimming pool maintenance services for residential and commercial properties. We also provide maintenance support for kids' pools and recreational areas.",
     points: [
@@ -275,21 +321,6 @@ export const CAPABILITIES: Capability[] = [
       "Ongoing maintenance support",
     ],
     image: HD.water,
-  },
-  {
-    slug: "pergola",
-    title: "Pergola & Shade Structures",
-    kicker: "Outdoor Pergola & Shade Solutions",
-    body: "Outdoor spaces can become more comfortable and useful with properly designed shade structures. JAYAM provides pergola and shade structure services for residential and commercial outdoor areas. We consider the property's requirements and outdoor environment when planning the work.",
-    points: [
-      "Villas",
-      "Gardens",
-      "Outdoor seating areas",
-      "Commercial properties",
-      "Recreational spaces",
-      "Landscape areas",
-    ],
-    image: HD.pergola,
   },
   {
     slug: "play-area",
@@ -321,36 +352,6 @@ export const CAPABILITIES: Capability[] = [
     ],
     image: HD.industrial,
   },
-];
-
-export type ArchiveProject = {
-  id: number;
-  title: string;
-  place: string;
-  scope: string;
-  image: string;
-};
-
-export const ARCHIVE_PROJECTS: ArchiveProject[] = [
-  { id: 1, title: "Tiger JAX", place: "Megaplex, Grand Hyatt", scope: "MEP Work", image: HD.hospitality },
-  { id: 2, title: "Fair Way", place: "Al Garhoud", scope: "MEP Work", image: HD.dubai },
-  { id: 3, title: "Private Villa L29", place: "Emirates Hills", scope: "MEP Work", image: HD.villa },
-  { id: 4, title: "Kai Enzo Restaurant", place: "Hyatt Centric", scope: "MEP Work", image: HD.restaurant },
-  { id: 5, title: "Yogurt Berry", place: "Sport Society", scope: "MEP Work", image: HD.dining },
-  { id: 6, title: "Grand Belle Vue", place: "Barsha Heights", scope: "MEP Fit-Out", image: HD.interior },
-  { id: 7, title: "Bussola", place: "Jumeirah Golf Estate", scope: "MEP Fit-Out", image: HD.golf },
-  { id: 8, title: "Crafty Fox", place: "Jumeirah Golf Estate & Yas Links, Abu Dhabi", scope: "MEP Fit-Out", image: HD.dining },
-  { id: 9, title: "Botanica", place: "Jumeirah Golf Estate", scope: "MEP Fit-Out", image: HD.landscape },
-  { id: 10, title: "Muteenavilla", place: "Dubai", scope: "Plumbing Work", image: HD.plumbing },
-  { id: 11, title: "Al Khaleej Camp", place: "Jebel Ali Industrial 3", scope: "Plumbing Work", image: HD.industrial },
-  { id: 12, title: "Villa 79", place: "DAMAC Hills", scope: "Plumbing Work – 32 Villas", image: HD.villa },
-  { id: 13, title: "Sparkle Tower", place: "Marina, Jumeirah", scope: "Chilled Water Work", image: HD.hvac },
-  { id: 14, title: "Al Gurm Palace", place: "UAE", scope: "Indoor Plantation", image: HD.plants },
-  { id: 15, title: "Riviera Tower", place: "Sharjah", scope: "Indoor Plant Maintenance", image: HD.green },
-  { id: 16, title: "Line Investment Properties", place: "Sharjah Central", scope: "Soft Landscape & Maintenance", image: HD.landscape },
-  { id: 17, title: "Private Villa 4", place: "Umm Al Quwain", scope: "Landscape & Indoor Plantation", image: HD.plants },
-  { id: 18, title: "Al Zahir Palace", place: "Ajman", scope: "Landscape & Indoor Plantation", image: HD.pergola },
-  { id: 19, title: "Private Villa 131", place: "Al Juraina, Sharjah", scope: "Landscape & Swimming Pool Maintenance", image: HD.pool },
 ];
 
 export const INDUSTRIES = [

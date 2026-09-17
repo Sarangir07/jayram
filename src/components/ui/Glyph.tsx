@@ -12,6 +12,8 @@
  */
 
 export type GlyphName =
+  | "bolt"
+  | "pergola"
   | "settings"
   | "snowflake"
   | "droplet"
@@ -26,6 +28,23 @@ export type GlyphName =
   | "building";
 
 const paths: Record<GlyphName, React.ReactNode> = {
+  /* bolt in a supply loop — electrical works */
+  bolt: (
+    <>
+      <path d="M13.2 2.6 6.4 13.1h4.6l-1.2 8.3 7.8-11.2h-4.9z" />
+      <path d="M3.2 6.4h3.4M3.2 9.6h2.2M20.8 14.4h-3.1M20.8 17.6h-2.2" />
+    </>
+  ),
+  /* beamed canopy on posts — pergola */
+  pergola: (
+    <>
+      <path d="M2.6 6.2h18.8" />
+      <path d="M4.9 8.9h14.2" />
+      <path d="M6.6 6.2v14.4M17.4 6.2v14.4" />
+      <path d="M9.3 6.2v2.7M12 6.2v2.7M14.7 6.2v2.7" />
+      <path d="M3.4 20.6h17.2" />
+    </>
+  ),
   /* gear — electro mechanical */
   settings: (
     <>

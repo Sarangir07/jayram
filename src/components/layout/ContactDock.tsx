@@ -1,3 +1,4 @@
+import ScrollButtons from "./ScrollButtons";
 import { Mail, Phone } from "lucide-react";
 
 import { CONTACT_DETAILS } from "@/data/inner";
@@ -53,6 +54,7 @@ export default function ContactDock() {
             </span>
           </a>
         ))}
+        <ScrollButtons />
       </nav>
     </div>
   );

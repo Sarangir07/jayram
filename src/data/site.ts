@@ -16,6 +16,7 @@ export const NAV: NavItem[] = [
   { label: "Services", href: "/services" },
   { label: "Projects", href: "/projects" },
   { label: "Industries", href: "/industries" },
+  { label: "Careers", href: "/careers" },
   { label: "FAQ", href: "/faq" },
   { label: "Contact", href: "/contact" },
 ];
@@ -78,9 +79,29 @@ export type Service = {
 
 export const SERVICES: Service[] = [
   {
+    slug: "electrical-works",
+    title: "Electrical Works",
+    panelTitle: ["Electrical Works"],
+    icon: "bolt",
+    image: "/assets/jayam/services/electro-mechanical.jpg",
+    photo: HD.engineer,
+    blurb:
+      "Design, consultation, submission, approval and inspection with DEWA, TAQA and SEWA — through to installation and testing.",
+  },
+  {
+    slug: "plumbing",
+    title: "Plumbing",
+    panelTitle: ["Plumbing"],
+    icon: "droplet",
+    image: "/assets/jayam/services/plumbing-sanitary.jpg",
+    photo: HD.plumbing,
+    blurb:
+      "Design, consultation, submission, approval and inspection with DEWA, TAQA and SEWA, plus water supply, drainage and sanitary works.",
+  },
+  {
     slug: "electro-mechanical",
-    title: "Electro Mechanical",
-    panelTitle: ["Electro", "Mechanical"],
+    title: "Electromechanical",
+    panelTitle: ["Electromechanical"],
     icon: "settings",
     image: "/assets/jayam/services/electro-mechanical.jpg",
     photo: HD.mep,
@@ -89,8 +110,8 @@ export const SERVICES: Service[] = [
   },
   {
     slug: "air-conditioning",
-    title: "Air Conditioning & Ventilation",
-    panelTitle: ["Air Conditioning", "& Ventilation"],
+    title: "Air Conditioning",
+    panelTitle: ["Air Conditioning"],
     icon: "snowflake",
     image: "/assets/jayam/services/air-conditioning.jpg",
     photo: HD.hvac,
@@ -98,34 +119,44 @@ export const SERVICES: Service[] = [
       "HVAC systems engineered for thermal comfort, indoor air quality and long-term operating efficiency.",
   },
   {
-    slug: "plumbing-sanitary",
-    title: "Plumbing & Sanitary",
-    panelTitle: ["Plumbing & Sanitary"],
-    icon: "droplet",
-    image: "/assets/jayam/services/plumbing-sanitary.jpg",
-    photo: HD.plumbing,
-    blurb:
-      "Water supply, drainage and sanitary installations built to specification and maintained for reliability.",
-  },
-  {
-    slug: "gypsum-ceiling",
-    title: "Gypsum, False Ceiling & Partition",
-    panelTitle: ["Gypsum, False Ceiling", "& Partition"],
+    slug: "gypsum",
+    title: "Gypsum",
+    panelTitle: ["Gypsum"],
     icon: "box",
     image: "/assets/jayam/services/gypsum-ceiling.jpg",
     photo: HD.interior,
     blurb:
-      "Interior systems — ceilings, partitions and finishes — executed to a clean, precise standard.",
+      "Gypsum works, false ceilings and partitions executed to a clean, precise interior standard.",
   },
   {
-    slug: "aluminium-glass",
-    title: "Aluminum & Glass",
-    panelTitle: ["Aluminum & Glass"],
+    slug: "aluminium",
+    title: "Aluminium",
+    panelTitle: ["Aluminium"],
     icon: "window",
     image: "/assets/jayam/services/aluminium-glass.jpg",
     photo: HD.glass,
     blurb:
-      "Façade, glazing and aluminium works that balance daylight, thermal performance and appearance.",
+      "Aluminium and glass works that balance daylight, thermal performance and appearance.",
+  },
+  {
+    slug: "lift-installation",
+    title: "Lift Installation",
+    panelTitle: ["Lift Installation"],
+    icon: "escalator",
+    image: "/assets/jayam/services/lifts-escalators.jpg",
+    photo: HD.escalator,
+    blurb:
+      "Vertical transportation installation and servicing, kept safe, compliant and available.",
+  },
+  {
+    slug: "pergola",
+    title: "Pergola",
+    panelTitle: ["Pergola"],
+    icon: "pergola",
+    image: "/assets/jayam/services/landscaping.jpg",
+    photo: HD.pergola,
+    blurb:
+      "Pergolas and shade structures that make outdoor areas usable through the year.",
   },
   {
     slug: "landscaping",
@@ -138,24 +169,14 @@ export const SERVICES: Service[] = [
       "Soft and hard landscaping, irrigation and planting designed for the climate and maintained year-round.",
   },
   {
-    slug: "pools-water-features",
-    title: "Swimming Pools & Water Features",
-    panelTitle: ["Swimming Pools", "& Water Features"],
+    slug: "swimming-pool",
+    title: "Swimming Pool",
+    panelTitle: ["Swimming Pool"],
     icon: "waves",
     image: "/assets/jayam/services/pools-water-features.jpg",
     photo: HD.pool,
     blurb:
-      "Pools, filtration and water features delivered as complete, serviceable systems.",
-  },
-  {
-    slug: "lifts-escalators",
-    title: "Lifts & Escalators",
-    panelTitle: ["Lifts & Escalators"],
-    icon: "escalator",
-    image: "/assets/jayam/services/lifts-escalators.jpg",
-    photo: HD.escalator,
-    blurb:
-      "Vertical transportation installation and servicing, kept safe, compliant and available.",
+      "Pools, filtration and water features delivered and maintained as complete, serviceable systems.",
   },
 ];
 
@@ -217,17 +238,18 @@ export type ExpertiseItem = {
 };
 
 export const EXPERTISE: ExpertiseItem[] = [
-  { title: "Soft Landscaping", detail: "Planting, turf and irrigation specified for the UAE climate and kept in condition through the year.", image: HD.landscape },
-  { title: "Hard Landscaping", detail: "Paving, stone, edges and outdoor structure that hold the landscape together under use and weather.", image: HD.hardscape },
-  { title: "Swimming & Kids Pool Maintenance", detail: "Pool plant, water quality and finishes maintained so the amenity stays open and dependable.", image: HD.pool },
+  { title: "Electrical Works", detail: "Design, consultation, submission, approval and inspection with DEWA, TAQA and SEWA — then installation and testing.", image: HD.engineer },
+  { title: "Plumbing", detail: "Design, consultation and authority approvals, with supply, drainage and sanitary works installed to spec.", image: HD.plumbing },
+  { title: "Electromechanical", detail: "Electrical and mechanical systems coordinated across the building, from plant to point of use.", image: HD.mep },
+  { title: "Air Conditioning", detail: "Comfort cooling and ventilation engineered for occupancy, not just peak load.", image: HD.hvac },
+  { title: "Gypsum", detail: "Interior envelopes executed to a precise line — ceilings, partitions and the services they conceal.", image: HD.interior },
+  { title: "Aluminium", detail: "Glazing and aluminium assemblies that carry daylight, weather and the building’s elevation.", image: HD.glass },
+  { title: "Lift Installation", detail: "Vertical transportation installed and serviced so it stays safe, compliant and available.", image: HD.escalator },
+  { title: "Pergola", detail: "Shade structures designed for climate, use and the architecture they sit beside.", image: HD.pergola },
+  { title: "Landscaping", detail: "Soft and hard landscaping — planting, irrigation, paving and outdoor structure, kept in condition year-round.", image: HD.landscape },
+  { title: "Swimming Pool", detail: "Pool plant, water quality and finishes maintained so the amenity stays open and dependable.", image: HD.pool },
   { title: "Water Features / Water Fountains", detail: "Fountains and water features as complete systems — hydraulics, lighting and ongoing care.", image: HD.water },
-  { title: "Pergola / Shade Structures", detail: "Shade structures designed for climate, use and the architecture they sit beside.", image: HD.pergola },
   { title: "Play Area Maintenance", detail: "Outdoor play environments kept safe, clean and ready — surfaces, equipment setting and landscape.", image: HD.play },
-  { title: "Electro Mechanical", detail: "Electrical and mechanical systems coordinated across the building, from plant to point of use.", image: HD.mep },
-  { title: "Air Conditioning & Ventilation", detail: "Comfort cooling and ventilation engineered for occupancy, not just peak load.", image: HD.hvac },
-  { title: "Plumbing & Sanitary", detail: "Supply, drainage and sanitary works installed to spec and kept reliable in operation.", image: HD.plumbing },
-  { title: "Gypsum / False Ceiling / Partition", detail: "Interior envelopes executed to a precise line — ceilings, partitions and the services they conceal.", image: HD.interior },
-  { title: "Aluminum & Glass", detail: "Glazing and aluminium assemblies that carry daylight, weather and the building’s elevation.", image: HD.glass },
 ];
 
 export type Project = {
@@ -284,13 +306,16 @@ export const IMPACT_NOTES = [
 ] as const;
 
 export const PROJECT_TYPES = [
-  "Electro Mechanical",
-  "Air Conditioning",
+  "Electrical Works",
   "Plumbing",
+  "Electromechanical",
+  "Air Conditioning",
+  "Gypsum",
+  "Aluminium",
+  "Lift Installation",
+  "Pergola",
   "Landscaping",
-  "Swimming Pools",
-  "Interiors",
-  "Aluminum & Glass",
+  "Swimming Pool",
   "Facility Maintenance",
   "Other",
 ] as const;

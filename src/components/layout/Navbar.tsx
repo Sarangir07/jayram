@@ -13,6 +13,9 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [condensed, setCondensed] = useState(false);
   const pathname = usePathname();
+  // Inner pages open on a dark photographic header, so the transparent bar
+  // needs light text until it condenses onto white.
+  const onDark = !condensed && pathname !== "/";
 
   useEffect(() => {
     const onScroll = () => setCondensed(window.scrollY > 90);
@@ -43,11 +46,16 @@ export default function Navbar() {
             <span className="hidden lg:inline-flex">
               <Logo
                 priority
-                height={condensed ? "48px" : "calc(97 * var(--s))"}
+                variant={onDark ? "light" : "dark"}
+                height={condensed ? "44px" : "calc(76 * var(--s))"}
               />
             </span>
             <span className="inline-flex lg:hidden">
-              <Logo priority height={condensed ? "40px" : "clamp(40px,7.4vw,52px)"} />
+              <Logo
+                priority
+                variant={onDark ? "light" : "dark"}
+                height={condensed ? "38px" : "clamp(38px,6.5vw,46px)"}
+              />
             </span>
           </Link>
 
@@ -71,7 +79,13 @@ export default function Navbar() {
                       href={item.href}
                       aria-current={isActive ? "page" : undefined}
                       className={`group relative block py-1 font-semibold tracking-[-0.005em] transition-colors duration-300 ${
-                        isActive ? "text-navy" : "text-navy/78 hover:text-blue"
+                        onDark
+                          ? isActive
+                            ? "text-white"
+                            : "text-white/80 hover:text-white"
+                          : isActive
+                            ? "text-navy"
+                            : "text-navy/78 hover:text-blue"
                       }`}
                       style={{ fontSize: "clamp(0.83rem, 1.04vw, 1rem)" }}
                     >
@@ -96,10 +110,12 @@ export default function Navbar() {
             <button
               type="button"
               suppressHydrationWarning
-              className="hidden items-center gap-2 font-bold tracking-[0.1em] text-navy uppercase transition-colors duration-300 hover:text-blue desk:flex"
+              className={`hidden items-center gap-2 font-bold tracking-[0.1em] uppercase transition-colors duration-300 desk:flex ${
+                onDark ? "text-white hover:text-blue-200" : "text-navy hover:text-blue"
+              }`}
               style={{ fontSize: "clamp(0.8rem, 1.02vw, 1.04rem)" }}
             >
-              <MapPin aria-hidden strokeWidth={2.4} className="size-[1.35em] text-navy" />
+              <MapPin aria-hidden strokeWidth={2.4} className="size-[1.35em]" />
               {COMPANY.location}
               <ChevronDown aria-hidden strokeWidth={2.4} className="size-[1.15em] opacity-70" />
             </button>
@@ -131,7 +147,9 @@ export default function Navbar() {
               className={`grid shrink-0 place-items-center rounded-full border transition-colors duration-300 ${
                 condensed
                   ? "border-hairline text-navy hover:border-blue hover:text-blue"
-                  : "border-navy/25 text-navy hover:border-blue hover:text-blue desk:border-white/60 desk:text-white desk:hover:border-white desk:hover:bg-white/10 desk:hover:text-white"
+                  : onDark
+                    ? "border-white/60 text-white hover:border-white hover:bg-white/10"
+                    : "border-navy/25 text-navy hover:border-blue hover:text-blue desk:border-white/60 desk:text-white desk:hover:border-white desk:hover:bg-white/10 desk:hover:text-white"
               }`}
               style={{ width: "clamp(2.6rem, 3.4vw, 3.4rem)", height: "clamp(2.6rem, 3.4vw, 3.4rem)" }}
             >

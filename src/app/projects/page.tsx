@@ -1,27 +1,37 @@
 import type { Metadata } from "next";
 
 import InnerShell from "@/components/inner/InnerShell";
-import PageHero from "@/components/inner/PageHero";
-import ProjectsArchive from "@/components/inner/ProjectsArchive";
-import { HD } from "@/data/photos";
+import ArchiveCta from "@/components/projects/archive-cta";
+import ArchiveHero from "@/components/projects/archive-hero";
+import ProjectArchive from "@/components/projects/project-archive";
+import ProjectClients from "@/components/projects/project-clients";
+import ProjectLocations from "@/components/projects/project-locations";
+import ProjectNumbers from "@/components/projects/project-numbers";
 
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Selected JAYAM work across the UAE, including MEP, fit-out, plumbing, chilled water, landscape and pool maintenance.",
+    "The JAYAM Technical Services project register — selected MEP, fit-out, plumbing, chilled water, landscaping, indoor plantation and swimming pool projects across the UAE.",
+  openGraph: {
+    title: "Project Archive | JAYAM Technical Services LLC",
+    description:
+      "Projects that speak through delivery — a register of selected MEP, fit-out, plumbing, landscaping and pool projects across Dubai and the UAE.",
+  },
 };
 
+/**
+ * The project archive: a text-first register of the company's selected
+ * projects. Sections 02–07 share state and live in <ProjectArchive>.
+ */
 export default function ProjectsPage() {
   return (
     <InnerShell>
-      <PageHero
-        index="03"
-        label="Projects"
-        title={["Selected Work", "Across the UAE"]}
-        lede="Our project portfolio demonstrates experience across villas, restaurants, hotels, retail spaces, commercial properties and residential developments. Names and scopes are taken from the company brochure."
-        image={HD.hospitality}
-      />
-      <ProjectsArchive />
+      <ArchiveHero />
+      <ProjectArchive />
+      <ProjectNumbers />
+      <ProjectLocations />
+      <ProjectClients />
+      <ArchiveCta />
     </InnerShell>
   );
 }
