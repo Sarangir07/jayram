@@ -9,6 +9,7 @@ import {
   CATEGORIES,
   PROJECTS,
   SERVICE_LABEL,
+  groupByYear,
   projectCategories,
   projectNumber,
   type CategoryFilter,
@@ -20,11 +21,21 @@ import { cn } from "@/lib/utils";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
+function Field({
+  label,
+  children,
+}: {
+  label: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="border-t border-navy/10 pt-4">
-      <dt className="text-[0.58rem] font-bold tracking-[0.28em] text-muted uppercase">{label}</dt>
-      <dd className="mt-2 text-[0.95rem] leading-snug font-semibold text-navy">{children}</dd>
+      <dt className="text-[0.58rem] font-bold tracking-[0.28em] text-muted uppercase">
+        {label}
+      </dt>
+      <dd className="mt-2 text-[0.95rem] leading-snug font-semibold text-navy">
+        {children}
+      </dd>
     </div>
   );
 }
@@ -45,7 +56,9 @@ function RegisterRow({
   const reduce = useReducedMotion();
   const panelId = `project-panel-${project.id}`;
   const buttonId = `project-row-${project.id}`;
-  const client = project.client ? CLIENTS.find((c) => c.id === project.client) : undefined;
+  const client = project.client
+    ? CLIENTS.find((c) => c.id === project.client)
+    : undefined;
   const scope = projectCategories(project).map((c) => SERVICE_LABEL[c]);
 
   return (
@@ -73,7 +86,9 @@ function RegisterRow({
           aria-hidden
           className={cn(
             "absolute inset-y-0 left-0 w-[3px] origin-top bg-blue transition-transform duration-400 ease-[var(--ease-out-quint)]",
-            expanded || lit ? "scale-y-100" : "scale-y-0 group-hover:scale-y-100",
+            expanded || lit
+              ? "scale-y-100"
+              : "scale-y-0 group-hover:scale-y-100",
           )}
         />
 
@@ -161,7 +176,11 @@ function RegisterRow({
             aria-labelledby={buttonId}
             initial={reduce ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
-            exit={reduce ? { height: 0, opacity: 0, transition: { duration: 0 } } : { height: 0, opacity: 0 }}
+            exit={
+              reduce
+                ? { height: 0, opacity: 0, transition: { duration: 0 } }
+                : { height: 0, opacity: 0 }
+            }
             transition={{ duration: 0.5, ease: EASE }}
             className="overflow-hidden bg-[#f4f8fb]"
           >
@@ -177,12 +196,18 @@ function RegisterRow({
                   <Field label="Location">{project.location}</Field>
                   <Field label="Service">{project.service}</Field>
                   <Field label="Sector">{project.sector}</Field>
+                  <Field label="Year">{project.year ?? "Ongoing"}</Field>
                   <Field label="Scope">{scope.join(" · ")}</Field>
                   <Field label="Emirate">{project.emirates.join(" & ")}</Field>
                   {client && <Field label="Client">{client.name}</Field>}
                   <Field label="Register No.">
-                    <span className="text-red tabular-nums">{projectNumber(project.number)}</span>
-                    <span className="text-muted"> / {projectNumber(PROJECTS.length)}</span>
+                    <span className="text-red tabular-nums">
+                      {projectNumber(project.number)}
+                    </span>
+                    <span className="text-muted">
+                      {" "}
+                      / {projectNumber(PROJECTS.length)}
+                    </span>
                   </Field>
                 </dl>
 
@@ -191,7 +216,9 @@ function RegisterRow({
                     <p className="text-[0.58rem] font-bold tracking-[0.28em] text-muted uppercase">
                       Overview
                     </p>
-                    <p className="mt-2 text-[1rem] leading-relaxed text-ink">{project.description}</p>
+                    <p className="mt-2 text-[1rem] leading-relaxed text-ink">
+                      {project.description}
+                    </p>
                   </div>
                 )}
 
@@ -244,7 +271,8 @@ export default function ProjectRegister({
   /** category currently hovered in the services breakdown */
   highlight: ProjectCategory | null;
 }) {
-  const label = CATEGORIES.find((c) => c.id === filter)?.label ?? "All Projects";
+  const label =
+    CATEGORIES.find((c) => c.id === filter)?.label ?? "All Projects";
   const activeTab = `tab-${filter}`;
 
   return (
@@ -265,7 +293,8 @@ export default function ProjectRegister({
           </h2>
         </div>
         <p className="shrink-0 text-[0.62rem] font-semibold tracking-[0.26em] text-muted uppercase tabular-nums">
-          {String(projects.length).padStart(2, "0")} {projects.length === 1 ? "Entry" : "Entries"}
+          {String(projects.length).padStart(2, "0")}{" "}
+          {projects.length === 1 ? "Entry" : "Entries"}
         </p>
       </div>
 
@@ -280,28 +309,53 @@ export default function ProjectRegister({
       </div>
       <div className="border-t border-navy/10 lg:border-t-0" />
 
-      <ol aria-live="polite">
-        <AnimatePresence initial={false} mode="popLayout">
-          {projects.map((p) => (
-            <motion.li
-              key={p.id}
-              layout="position"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3, ease: EASE }}
-            >
-              <RegisterRow
-                project={p}
-                expanded={expanded === p.id}
-                dimmed={highlight !== null && !projectCategories(p).includes(highlight)}
-                lit={highlight !== null && projectCategories(p).includes(highlight)}
-                onToggle={() => onToggle(p.id)}
-              />
-            </motion.li>
-          ))}
-        </AnimatePresence>
-      </ol>
+      <AnimatePresence initial={false} mode="popLayout">
+        {groupByYear(projects).map((g) => (
+          <motion.section
+            key={g.key}
+            layout="position"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: EASE }}
+            aria-labelledby={`register-year-${g.key}`}
+          >
+            <div className="sticky top-[7.4rem] z-20 border-b border-navy bg-navy text-white lg:top-[8rem]">
+              <div className="u-container flex items-baseline justify-between gap-6 py-3.5">
+                <h3
+                  id={`register-year-${g.key}`}
+                  className="text-[clamp(1.3rem,2.2vw,1.9rem)] leading-none font-black tracking-[-0.03em] uppercase tabular-nums"
+                >
+                  {g.label}
+                </h3>
+                <p className="text-[0.6rem] font-semibold tracking-[0.26em] text-white/70 uppercase tabular-nums">
+                  {String(g.projects.length).padStart(2, "0")}{" "}
+                  {g.projects.length === 1 ? "Site" : "Sites"}
+                </p>
+              </div>
+            </div>
+            <ol aria-live="polite">
+              {g.projects.map((p) => (
+                <li key={p.id}>
+                  <RegisterRow
+                    project={p}
+                    expanded={expanded === p.id}
+                    dimmed={
+                      highlight !== null &&
+                      !projectCategories(p).includes(highlight)
+                    }
+                    lit={
+                      highlight !== null &&
+                      projectCategories(p).includes(highlight)
+                    }
+                    onToggle={() => onToggle(p.id)}
+                  />
+                </li>
+              ))}
+            </ol>
+          </motion.section>
+        ))}
+      </AnimatePresence>
 
       {projects.length === 0 && (
         <p className="u-container py-16 text-[0.9rem] text-muted">

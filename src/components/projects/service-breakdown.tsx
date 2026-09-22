@@ -12,7 +12,7 @@ import {
 } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
-const ORDER: ProjectCategory[] = ["mep", "fitout", "plumbing", "landscaping", "pools", "maintenance"];
+const ORDER: ProjectCategory[] = ["fitout", "mep", "electrical", "plumbing", "landscaping", "pools", "maintenance"];
 
 /**
  * Service → projects. Hovering or focusing a service highlights its projects
@@ -43,7 +43,7 @@ export default function ServiceBreakdown({
             </h2>
           </div>
           <p className="u-lede self-end text-[0.98rem] lg:col-span-4 lg:col-start-9">
-            The selected projects, grouped by the service delivered. Hover a
+            Every completed site, grouped by the service delivered. Hover a
             service to trace it through the register; select it to filter.
           </p>
         </Reveal>

@@ -37,7 +37,7 @@ export default function ArchiveHero() {
               className="a-rise max-w-[30rem] text-[clamp(1rem,1.15vw,1.12rem)] leading-relaxed text-white/72"
               style={{ animationDelay: "180ms" }}
             >
-              Explore selected projects delivered across MEP, fit-out, plumbing,
+              Every completed site from 2022 to 2026 — MEP fit-out, electrical, plumbing,
               landscaping, swimming pools and technical services throughout the UAE.
             </p>
           </div>
