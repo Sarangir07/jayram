@@ -60,15 +60,15 @@ export default function MobileMenu({
         aria-label="Site menu"
         className={`absolute inset-0 flex flex-col bg-[#061733] text-white ${open ? "opacity-100" : "opacity-0"}`}
       >
-        <div className="flex items-center justify-between px-[var(--gutter)] py-6">
-          <p className="text-[0.62rem] font-semibold tracking-[0.28em] text-blue-200 uppercase">{COMPANY.shortName}</p>
+        <div className="flex items-center justify-between gap-4 px-[var(--gutter)] py-6">
+          <p className="min-w-0 text-[0.62rem] leading-relaxed font-semibold tracking-[0.28em] text-blue-200 uppercase">{COMPANY.name}</p>
           <button
             ref={closeRef}
             type="button"
             suppressHydrationWarning
             onClick={onClose}
             aria-label="Close menu"
-            className="grid size-11 place-items-center rounded-full border border-white/25"
+            className="grid size-11 shrink-0 place-items-center rounded-full border border-white/25"
           >
             <X aria-hidden className="size-5" />
           </button>

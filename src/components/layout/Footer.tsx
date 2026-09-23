@@ -24,9 +24,7 @@ export default function Footer() {
       <div className="u-container relative">
         <div className="grid items-center gap-10 py-[clamp(2.8rem,5vw,4.5rem)] lg:grid-cols-[1.2fr_1fr]">
           <div>
-            <span className="inline-block rounded-2xl bg-white px-4 py-3">
-              <Logo height="52px" />
-            </span>
+            <Logo height="52px" variant="light" />
             <p className="mt-5 max-w-[28rem] text-[0.92rem] leading-relaxed">
               Complete MEP, landscaping and facility solutions for a smarter,
               greener and brighter tomorrow.
@@ -44,7 +42,7 @@ export default function Footer() {
             </Link>
             <p className="mt-5 flex flex-col gap-2 text-[0.9rem] font-semibold text-white lg:items-end">
               <span className="flex items-center gap-2">
-                <MapPin aria-hidden className="size-4 text-red-bright" />
+                <MapPin aria-hidden className="size-4 shrink-0 text-red-bright" />
                 {CONTACT_DETAILS.location}
               </span>
               <a href={CONTACT_DETAILS.phoneHref} className="hover:text-blue-200">

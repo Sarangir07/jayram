@@ -62,10 +62,6 @@ export default function ContactStudio() {
               <dd className="mt-1 font-bold text-navy">{CONTACT_DETAILS.company}</dd>
             </div>
             <div>
-              <dt className="text-[0.62rem] font-semibold tracking-[0.2em] text-muted uppercase">Manager</dt>
-              <dd className="mt-1 font-bold text-navy">{CONTACT_DETAILS.manager}</dd>
-            </div>
-            <div>
               <dt className="text-[0.62rem] font-semibold tracking-[0.2em] text-muted uppercase">Telephone</dt>
               <dd className="mt-1">
                 <a className="font-bold text-navy hover:text-blue" href={CONTACT_DETAILS.phoneHref}>
@@ -78,6 +74,11 @@ export default function ContactStudio() {
               <dd className="mt-1">
                 <a className="font-bold text-navy hover:text-blue" href={CONTACT_DETAILS.emailHref}>
                   {CONTACT_DETAILS.email}
+                </a>
+              </dd>
+              <dd className="mt-1">
+                <a className="font-bold text-navy hover:text-blue" href={CONTACT_DETAILS.secondaryEmailHref}>
+                  {CONTACT_DETAILS.secondaryEmail}
                 </a>
               </dd>
             </div>

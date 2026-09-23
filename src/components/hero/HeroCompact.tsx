@@ -103,7 +103,10 @@ export default function HeroCompact() {
             </span>
 
             {/* stat card */}
-            <div className="u-glass absolute right-4 bottom-4 left-4 flex items-center gap-4 rounded-2xl px-4 py-3.5">
+            <Link
+              href="/projects"
+              className="u-glass absolute right-4 bottom-4 left-4 flex items-center gap-4 rounded-2xl px-4 py-3.5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
               <Glyph name="building" strokeWidth={1.3} className="size-9 shrink-0 text-white" />
               <div className="flex-1">
                 <p className="text-[1.35rem] leading-none font-extrabold tracking-[-0.02em] text-white">
@@ -115,7 +118,7 @@ export default function HeroCompact() {
                 </p>
               </div>
               <ArrowRight aria-hidden strokeWidth={1.8} className="size-5 shrink-0 text-white/80" />
-            </div>
+            </Link>
           </div>
         </div>
 

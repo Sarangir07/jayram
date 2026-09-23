@@ -38,7 +38,7 @@ export default function Contact() {
             <dl className="mt-8 space-y-4">
               <div>
                 <dt className="text-[0.62rem] font-semibold tracking-[0.22em] text-muted uppercase">Location</dt>
-                <dd className="mt-1 text-[1.05rem] font-bold text-navy">{COMPANY.location}</dd>
+                <dd className="mt-1 text-[1.05rem] font-bold text-navy">{COMPANY.address}</dd>
               </div>
               <div>
                 <dt className="text-[0.62rem] font-semibold tracking-[0.22em] text-muted uppercase">Telephone</dt>

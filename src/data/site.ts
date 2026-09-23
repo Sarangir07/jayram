@@ -22,7 +22,7 @@ export const NAV: NavItem[] = [
 ];
 
 export const COMPANY = {
-  name: "JAYAM Technical Services LLC",
+  name: "JAYAM TECHNICAL SERVICES LLC",
   shortName: "JAYAM",
   location: "Dubai, UAE",
   established: 2021,
@@ -34,7 +34,7 @@ export const COMPANY = {
   },
   phone: "+971 54 358 2569",
   email: "info@jayam.me",
-  address: null as string | null,
+  address: "Al Qusais, Dubai, United Arab Emirates",
   social: [] as { label: string; href: string }[],
 } as const;
 

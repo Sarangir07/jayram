@@ -1,19 +1,21 @@
 /**
- * Inner-page content taken from the official JAYAM Technical Services LLC PDF.
- * Nothing here is invented beyond that document.
+ * Inner-page content taken from the official JAYAM Technical Services LLC PDF,
+ * with contact details updated from company-provided information.
  */
 
 import { HD } from "@/data/photos";
+import { COMPANY } from "@/data/site";
 
 export const CONTACT_DETAILS = {
-  company: "JAYAM Technical Services LLC",
-  manager: "Mohan Kumar Subbaraj",
+  company: COMPANY.name,
   phone: "+971 54 358 2569",
   phoneHref: "tel:+971543582569",
   email: "info@jayam.me",
   emailHref: "mailto:info@jayam.me",
+  secondaryEmail: "jayamts2022@gmail.com",
+  secondaryEmailHref: "mailto:jayamts2022@gmail.com",
   whatsappHref: "https://wa.me/971543582569",
-  location: "Dubai, United Arab Emirates",
+  location: COMPANY.address,
 } as const;
 
 export const ABOUT_COPY = {

@@ -17,7 +17,7 @@ export default function Logo({
   priority = false,
 }: {
   height?: string;
-  /** `light` adds a soft white halo so the artwork stays legible on dark photography. */
+  /** `light` brightens the artwork for dark backgrounds. */
   variant?: "dark" | "light";
   className?: string;
   priority?: boolean;
@@ -34,9 +34,7 @@ export default function Logo({
         style={{
           height,
           width: `calc(${height} * ${logo.width / logo.height})`,
-          filter: light
-            ? "drop-shadow(0 0 1px rgba(255,255,255,0.95)) drop-shadow(0 0 10px rgba(255,255,255,0.75)) drop-shadow(0 4px 18px rgba(255,255,255,0.5))"
-            : undefined,
+          filter: light ? "brightness(1.3) saturate(1.1)" : undefined,
         }}
         className="object-contain object-left"
         sizes="320px"
