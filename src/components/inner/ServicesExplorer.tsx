@@ -12,19 +12,38 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 export type Origin = { x: number; y: number };
 
+// Touch devices and small screens get a lighter, GPU-only transition (no clip-path reveal or shared-image morph).
+const LITE_QUERY = "(max-width: 1023px), (pointer: coarse)";
+
+function useLite() {
+  const [lite, setLite] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia(LITE_QUERY);
+    const update = () => setLite(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+  return lite;
+}
+
 export default function ServicesExplorer() {
   const [open, setOpen] = useState<number | null>(null);
   // Only the card the visitor clicked morphs into the detail view; after prev/next the panel fades instead.
   const [morph, setMorph] = useState<string | null>(null);
   const [origin, setOrigin] = useState<Origin>({ x: 0.5, y: 0.5 });
   const cards = useRef<(HTMLButtonElement | null)[]>([]);
+  const lite = useLite();
 
-  const show = useCallback((i: number, from?: Origin) => {
-    setOrigin(from ?? { x: 0.5, y: 0.5 });
-    setMorph(CAPABILITIES[i].slug);
-    setOpen(i);
-    history.replaceState(null, "", `#${CAPABILITIES[i].slug}`);
-  }, []);
+  const show = useCallback(
+    (i: number, from?: Origin) => {
+      setOrigin(from ?? { x: 0.5, y: 0.5 });
+      setMorph(lite ? null : CAPABILITIES[i].slug);
+      setOpen(i);
+      history.replaceState(null, "", `#${CAPABILITIES[i].slug}`);
+    },
+    [lite],
+  );
 
   const go = useCallback((i: number) => {
     const next = (i + CAPABILITIES.length) % CAPABILITIES.length;
@@ -90,6 +109,7 @@ export default function ServicesExplorer() {
                   index={i}
                   hidden={open === i && morph === item.slug}
                   morph={morph === item.slug}
+                  lite={lite}
                   ref={(el) => {
                     cards.current[i] = el;
                   }}
@@ -107,6 +127,7 @@ export default function ServicesExplorer() {
               index={open}
               morph={morph === CAPABILITIES[open].slug}
               origin={origin}
+              lite={lite}
               onClose={close}
               onNavigate={go}
             />
@@ -122,6 +143,7 @@ function ServiceCard({
   index,
   hidden,
   morph,
+  lite,
   ref,
   onOpen,
 }: {
@@ -129,10 +151,12 @@ function ServiceCard({
   index: number;
   hidden: boolean;
   morph: boolean;
+  lite: boolean;
   ref: (el: HTMLButtonElement | null) => void;
   onOpen: (from: Origin) => void;
 }) {
   const track = (e: React.PointerEvent<HTMLButtonElement>) => {
+    if (e.pointerType !== "mouse") return;
     const r = e.currentTarget.getBoundingClientRect();
     e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
     e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
@@ -140,10 +164,10 @@ function ServiceCard({
 
   return (
     <motion.li
-      initial={{ opacity: 0, y: 36, clipPath: "inset(12% 0% 0% 0%)" }}
-      whileInView={{ opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)" }}
+      initial={lite ? { opacity: 0, y: 24 } : { opacity: 0, y: 36, clipPath: "inset(12% 0% 0% 0%)" }}
+      whileInView={lite ? { opacity: 1, y: 0 } : { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)" }}
       viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.8, ease: EASE, delay: (index % 3) * 0.08 }}
+      transition={{ duration: lite ? 0.5 : 0.8, ease: EASE, delay: lite ? 0 : (index % 3) * 0.08 }}
     >
       <button
         ref={ref}

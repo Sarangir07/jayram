@@ -16,12 +16,14 @@ export default function ServiceDetail({
   index,
   morph,
   origin,
+  lite,
   onClose,
   onNavigate,
 }: {
   index: number;
   morph: boolean;
   origin: Origin;
+  lite: boolean;
   onClose: () => void;
   onNavigate: (i: number) => void;
 }) {
@@ -87,10 +89,19 @@ export default function ServiceDetail({
       <motion.div
         aria-hidden
         className="u-deep absolute inset-0"
-        initial={{ clipPath: `circle(0% at ${at})` }}
-        animate={{ clipPath: `circle(150% at ${at})` }}
-        exit={{ clipPath: `circle(0% at ${at})`, transition: { duration: 0.6, ease: [0.7, 0, 0.84, 0], delay: 0.1 } }}
-        transition={{ duration: 0.9, ease: [0.65, 0, 0.35, 1] }}
+        {...(lite
+          ? {
+              initial: { opacity: 0 },
+              animate: { opacity: 1 },
+              exit: { opacity: 0, transition: { duration: 0.25, ease: EASE, delay: 0.05 } },
+              transition: { duration: 0.3, ease: EASE },
+            }
+          : {
+              initial: { clipPath: `circle(0% at ${at})` },
+              animate: { clipPath: `circle(150% at ${at})` },
+              exit: { clipPath: `circle(0% at ${at})`, transition: { duration: 0.6, ease: [0.7, 0, 0.84, 0], delay: 0.1 } },
+              transition: { duration: 0.9, ease: [0.65, 0, 0.35, 1] },
+            })}
       >
         <div className="u-eng-grid absolute inset-0 opacity-40" />
         <motion.div
@@ -104,11 +115,11 @@ export default function ServiceDetail({
 
       {/* Top bar */}
       <motion.header
-        className="absolute inset-x-0 top-0 z-20 border-b border-white/10 bg-[#04101f]/70 backdrop-blur-md"
+        className={`absolute inset-x-0 top-0 z-20 border-b border-white/10 ${lite ? "bg-[#04101f]" : "bg-[#04101f]/70 backdrop-blur-md"}`}
         initial={{ y: "-100%" }}
         animate={{ y: 0 }}
-        exit={{ y: "-100%", transition: { duration: 0.35, ease: EASE } }}
-        transition={{ duration: 0.6, ease: EASE, delay: 0.35 }}
+        exit={{ y: "-100%", transition: { duration: lite ? 0.25 : 0.35, ease: EASE } }}
+        transition={{ duration: lite ? 0.4 : 0.6, ease: EASE, delay: lite ? 0.1 : 0.35 }}
       >
         <div className="u-container flex h-16 items-center gap-4 lg:h-20">
           <span className="text-[0.66rem] font-bold tracking-[0.24em] text-white/50 tabular-nums">
@@ -156,7 +167,10 @@ export default function ServiceDetail({
       <motion.div
         ref={scroller}
         className="absolute inset-0 z-10 overflow-y-auto overscroll-contain pt-16 lg:pt-20"
-        exit={{ opacity: 0, transition: { duration: 0.3 } }}
+        initial={lite ? { opacity: 0, y: 28 } : false}
+        animate={lite ? { opacity: 1, y: 0 } : undefined}
+        transition={{ duration: 0.4, ease: EASE, delay: 0.05 }}
+        exit={lite ? { opacity: 0, y: 16, transition: { duration: 0.22, ease: EASE } } : { opacity: 0, transition: { duration: 0.3 } }}
       >
         <AnimatePresence mode="wait" initial={true}>
           <motion.article
@@ -166,8 +180,12 @@ export default function ServiceDetail({
             exit="leave"
             variants={{
               hidden: {},
-              show: { transition: { staggerChildren: 0.07, delayChildren: morph ? 0.45 : 0.15 } },
-              leave: { opacity: 0, x: -40, transition: { duration: 0.3, ease: EASE } },
+              show: {
+                transition: lite
+                  ? { staggerChildren: 0.04, delayChildren: 0.12 }
+                  : { staggerChildren: 0.07, delayChildren: morph ? 0.45 : 0.15 },
+              },
+              leave: { opacity: 0, x: lite ? -20 : -40, transition: { duration: lite ? 0.2 : 0.3, ease: EASE } },
             }}
           >
             {/* Hero */}
@@ -178,6 +196,15 @@ export default function ServiceDetail({
                     layoutId={`svc-media-${item.slug}`}
                     className="absolute inset-0 overflow-hidden"
                     transition={{ duration: 0.85, ease: EASE }}
+                  >
+                    <FrameImage src={item.image} alt="" sizes="(min-width:1024px) 52vw, 100vw" priority />
+                  </motion.div>
+                ) : lite ? (
+                  <motion.div
+                    className="absolute inset-0"
+                    initial={{ opacity: 0, scale: 1.04 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, ease: EASE }}
                   >
                     <FrameImage src={item.image} alt="" sizes="(min-width:1024px) 52vw, 100vw" priority />
                   </motion.div>
