@@ -196,7 +196,7 @@ function RegisterRow({
                   <Field label="Location">{project.location}</Field>
                   <Field label="Service">{project.service}</Field>
                   <Field label="Sector">{project.sector}</Field>
-                  <Field label="Year">{project.year ?? "Ongoing"}</Field>
+                  <Field label="Year">{project.year ?? "Completed"}</Field>
                   <Field label="Scope">{scope.join(" · ")}</Field>
                   <Field label="Emirate">{project.emirates.join(" & ")}</Field>
                   {client && <Field label="Client">{client.name}</Field>}

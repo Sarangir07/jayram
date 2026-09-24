@@ -1037,8 +1037,8 @@ const SPAN = `${YEARS[YEARS.length - 1]}–${YEARS[0]}`;
 
 export type YearGroup = { key: string; label: string; year?: number; projects: Project[] };
 
-/** Label used for undated (ongoing maintenance) contracts. */
-export const ONGOING_LABEL = "Ongoing Maintenance";
+/** Label used for undated completed contracts. */
+export const ONGOING_LABEL = "Completed Projects";
 
 /**
  * Split a list of projects into year groups, preserving register order
