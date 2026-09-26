@@ -24,9 +24,7 @@ export default function Footer() {
       <div className="u-container relative">
         <div className="grid items-center gap-10 py-[clamp(2.8rem,5vw,4.5rem)] lg:grid-cols-[1.2fr_1fr]">
           <div>
-            <span className="inline-flex rounded-xl bg-white px-4 py-3">
-              <Logo height="52px" variant="dark" />
-            </span>
+            <Logo height="52px" variant="light" />
             <p className="mt-5 max-w-[28rem] text-[0.92rem] leading-relaxed">
               Complete MEP, landscaping and facility solutions for a smarter,
               greener and brighter tomorrow.
