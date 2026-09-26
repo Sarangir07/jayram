@@ -6,6 +6,20 @@ import Glyph, { type GlyphName } from "@/components/ui/Glyph";
 import Reveal from "@/components/ui/Reveal";
 import { SERVICES } from "@/data/site";
 
+// Maps a home-page service slug to its matching capability slug on /services.
+const CAPABILITY_SLUG: Record<string, string> = {
+  "electrical-works": "electrical-works",
+  plumbing: "plumbing-sanitary",
+  "electro-mechanical": "electro-mechanical",
+  "air-conditioning": "air-conditioning",
+  gypsum: "gypsum-ceiling",
+  aluminium: "aluminium-glass",
+  "lift-installation": "lift-installation",
+  pergola: "pergola",
+  landscaping: "soft-landscaping",
+  "swimming-pool": "swimming-pools",
+};
+
 export default function Services() {
   return (
     <section id="services" className="relative bg-[#f3f7fb]">
@@ -41,7 +55,10 @@ export default function Services() {
           {SERVICES.map((service, i) => (
             <li key={service.slug}>
               <Reveal delay={i * 50}>
-                <article className="group h-full overflow-hidden rounded-[1.65rem] bg-[#123044] p-3.5 shadow-[0_18px_40px_-24px_rgba(6,23,51,0.55)] transition-transform duration-500 ease-[var(--ease-out-quint)] hover:-translate-y-1">
+                <Link
+                  href={`/services#${CAPABILITY_SLUG[service.slug] ?? service.slug}`}
+                  className="group block h-full overflow-hidden rounded-[1.65rem] bg-[#123044] p-3.5 shadow-[0_18px_40px_-24px_rgba(6,23,51,0.55)] transition-transform duration-500 ease-[var(--ease-out-quint)] hover:-translate-y-1"
+                >
                   <div className="relative aspect-[16/10] overflow-hidden rounded-[1.15rem]">
                     <Image
                       src={service.photo}
@@ -65,7 +82,7 @@ export default function Services() {
                       {service.blurb}
                     </p>
                   </div>
-                </article>
+                </Link>
               </Reveal>
             </li>
           ))}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { AnimatePresence, LayoutGroup, MotionConfig, motion } from "framer-motion";
 
 import ServiceDetail from "@/components/inner/ServiceDetail";
@@ -64,6 +64,17 @@ export default function ServicesExplorer() {
   }, [open, morph]);
 
   // Deep link: /services#swimming-pools opens that service directly.
+  // useLayoutEffect commits the open state before the browser paints, so
+  // there's no visible flash of the plain grid before the detail opens.
+  useLayoutEffect(() => {
+    const slug = decodeURIComponent(location.hash.slice(1));
+    const i = CAPABILITIES.findIndex((c) => c.slug === slug);
+    if (i >= 0) {
+      setMorph(null);
+      setOpen(i);
+    }
+  }, []);
+
   useEffect(() => {
     const fromHash = () => {
       const slug = decodeURIComponent(location.hash.slice(1));
@@ -73,12 +84,8 @@ export default function ServicesExplorer() {
         setOpen(i);
       }
     };
-    const frame = requestAnimationFrame(fromHash);
     window.addEventListener("hashchange", fromHash);
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener("hashchange", fromHash);
-    };
+    return () => window.removeEventListener("hashchange", fromHash);
   }, []);
 
   return (
