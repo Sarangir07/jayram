@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import logo from "@/../public/assets/jayam/logo/jayam-logo.png";
+import logoLight from "@/../public/assets/jayam/logo/jayam-logo-light.png";
 
 /**
  * The JAYAM lockup — the supplied "Jayam Logo Corrected Final-05" artwork
@@ -23,18 +24,18 @@ export default function Logo({
   priority?: boolean;
 }) {
   const light = variant === "light";
+  const src = light ? logoLight : logo;
 
   return (
     <span className={`inline-flex items-center ${className}`}>
       <Image
-        src={logo}
+        src={src}
         alt=""
         aria-hidden
         priority={priority}
         style={{
           height,
-          width: `calc(${height} * ${logo.width / logo.height})`,
-          filter: light ? "brightness(1.3) saturate(1.1)" : undefined,
+          width: `calc(${height} * ${src.width / src.height})`,
         }}
         className="object-contain object-left"
         sizes="320px"
